@@ -1,0 +1,33 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=JetBrains+Mono:wght@400;600&display=swap');
+
+:root {
+    --bg-carbon: #010103;
+    --accent-cyan: #11CDEF;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+}
+
+body {
+    background-color: var(--bg-carbon) !important;
+    color: #f5f7ff !important;
+    font-family: 'JetBrains Mono', monospace !important;
+}
+
+h1, h2, h3, .navbar-brand {
+    font-family: 'Orbitron', sans-serif !important;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-cyan) !important;
+}
+
+.card {
+    background: var(--glass-bg) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(17, 205, 239, 0.2) !important;
+    color: white !important;
+}
+
+.navbar {
+    background-color: rgba(5, 6, 13, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(17, 205, 239, 0.1);
+}
