@@ -132,3 +132,383 @@
 
 </body>
 </html>
+
+
+<!-- MUONS – Top Board Members (glass card + animations + hide button + credit, full-bleed) -->
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+  /* Prevent horizontal scroll from full-bleed */
+  html, body {
+    overflow-x: hidden;
+  }
+
+  .team-section {
+    --blue: #0B3BFF;
+    --black: #070B1A;
+    --ash: #0E1326;
+    --muted-1: #8EA4FF;
+    --text: #E6E9FF;
+
+    position: relative;
+    isolation: isolate;
+
+    /* Full-bleed hack: stretch to viewport width, ignore Elementor’s max-width */
+    --vw: 100svw;
+    width: var(--vw);
+    max-width: var(--vw);
+    left: 50%;
+    right: 50%;
+    margin-left: calc(-0.5 * var(--vw));
+    margin-right: calc(-0.5 * var(--vw));
+
+    min-height: 70vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding-block: clamp(40px, 8vh, 72px);
+    padding-inline: clamp(16px, 5vw, 64px);
+
+    background-image:
+      linear-gradient(135deg, rgba(7,11,26,0.55), rgba(14,19,38,0.7)),
+      url('https://muons.rf.gd/wp-content/uploads/2025/09/Media-Crew.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center 20%;
+
+    color: var(--text);
+    font-family: 'JetBrains Mono', ui-monospace, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  /* Fallback for browsers without 100svw support */
+  @supports not (width: 100svw) {
+    .team-section {
+      --vw: 100vw;
+      min-height: 70vh;
+    }
+  }
+
+  .team-inner {
+    width: 100%;
+    max-width: 980px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: clamp(24px, 4vw, 40px);
+    align-items: flex-start;
+  }
+
+  @media (max-width: 820px) {
+    .team-inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .team-header-label {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: rgba(230,233,255,0.7);
+    margin-bottom: 0.35rem;
+  }
+
+  .team-heading {
+    font-family: "Orbitron", system-ui, sans-serif;
+    font-size: clamp(1.6rem, 1.4rem + 0.8vw, 2.1rem);
+    margin: 0 0 0.5rem 0;
+    letter-spacing: 0.04em;
+    color: var(--text);
+  }
+
+  .team-subtitle {
+    font-size: 0.9rem;
+    color: var(--muted-1);
+    max-width: 26rem;
+    line-height: 1.7;
+  }
+
+  /* === GLASS CARD === */
+  .team-card {
+    position: relative;
+    padding: clamp(20px, 3.5vw, 28px);
+
+    background: linear-gradient(
+      135deg,
+      rgba(7, 11, 26, 0.42),
+      rgba(7, 11, 26, 0.16)
+    );
+    border-radius: 10px;
+    border: 1px solid rgba(230, 233, 255, 0.25);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8);
+
+    backdrop-filter: blur(18px) saturate(135%);
+    -webkit-backdrop-filter: blur(18px) saturate(135%);
+  }
+
+  .team-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    pointer-events: none;
+  }
+
+  .team-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .team-card-title {
+    font-family: "Orbitron", system-ui, sans-serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(230,233,255,0.9);
+  }
+
+  .team-card-badge {
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    padding: 0.26rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid rgba(142,164,255,0.55);
+    color: var(--muted-1);
+    background: rgba(7,11,26,0.6);
+  }
+
+  .team-list {
+    list-style: none;
+    margin: 0;
+    padding: 12px 0 0 0;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    display: grid;
+    gap: 8px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .team-list li {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    column-gap: 12px;
+    row-gap: 2px;
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    font-size: 0.9rem;
+  }
+
+  .role {
+    font-weight: 600;
+    color: var(--muted-1);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.78rem;
+  }
+
+  .name {
+    color: var(--text);
+  }
+
+  .team-list li:last-child {
+    border-bottom: none;
+  }
+
+  .team-list li:hover .name {
+    color: var(--muted-1);
+  }
+
+  @media (max-width: 640px) {
+    .team-section {
+      padding-inline: 16px;
+    }
+    .team-list li {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* === APPEAR ANIMATIONS (after 2s) === */
+  .team-inner header,
+  .team-card,
+  .team-credit {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+
+  .team-inner header {
+    animation: muonsFadeUp 0.7s cubic-bezier(.2,.6,.2,1) 2s forwards;
+  }
+
+  .team-card {
+    animation: muonsFadeUp 0.7s cubic-bezier(.2,.6,.2,1) 2.2s forwards;
+  }
+
+  .team-credit {
+    animation: muonsFadeUp 0.6s cubic-bezier(.2,.6,.2,1) 2.4s forwards;
+  }
+
+  @keyframes muonsFadeUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* === SMALL, SUBTLE HIDE BUTTON === */
+  .team-card-hide-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    padding: 2px 8px;
+    border-radius: 999px;
+    border: 1px solid rgba(230,233,255,0.18);
+    background: rgba(7,11,26,0.4);
+    color: rgba(230,233,255,0.65);
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    cursor: pointer;
+    opacity: 0.4;
+    z-index: 2;
+    transition:
+      opacity 0.2s ease-out,
+      background-color 0.2s ease-out,
+      transform 0.15s ease-out;
+  }
+
+  .team-card-hide-btn:hover {
+    opacity: 0.8;
+    background: rgba(7,11,26,0.75);
+    transform: translateY(-1px);
+  }
+
+  .team-card-hide-btn:focus-visible {
+    outline: 1px solid rgba(230,233,255,0.7);
+    outline-offset: 2px;
+    opacity: 0.9;
+  }
+
+  .team-card.is-hiding {
+    opacity: 0 !important;
+    transform: translateY(10px) scale(0.98);
+    transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+  }
+
+  /* === CREDIT LINE === */
+  .team-credit {
+    grid-column: 1 / -1;
+    margin-top: clamp(12px, 2vh, 20px);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: rgba(230,233,255,0.45);
+    text-align: right;
+  }
+
+  .team-credit span {
+    color: var(--muted-1);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .team-inner header,
+    .team-card,
+    .team-credit {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+    }
+  }
+</style>
+
+<section class="team-section" aria-labelledby="team-heading">
+  <div class="team-inner">
+    <header>
+      <div class="team-header-label">MUONS Leadership</div>
+      <h2 class="team-heading" id="team-heading">Top Board Members 2025/2026</h2>
+      <p class="team-subtitle">
+        The core student leadership guiding MUONS across production, events,
+        and technical direction for the 2025/2026 season.
+      </p>
+    </header>
+
+    <div class="team-card" id="muons-team-card" role="region" aria-label="Top Board Members">
+      <button
+        type="button"
+        class="team-card-hide-btn"
+        id="muons-team-card-hide"
+        aria-label="Hide board card"
+      >
+        Hide
+      </button>
+
+      <div class="team-card-header">
+        <div class="team-card-title">Executive Board</div>
+        <div class="team-card-badge">2025 / 2026</div>
+      </div>
+
+      <ul class="team-list">
+        <li>
+          <span class="role">President</span>
+          <span class="name">Nethu Thathsara Dissanayake</span>
+        </li>
+        <li>
+          <span class="role">Vice President</span>
+          <span class="name">Sanithu Ransen Aththanayake</span>
+        </li>
+        <li>
+          <span class="role">Secretary</span>
+          <span class="name">Durangi Dheeshana Thathsarani</span>
+        </li>
+        <li>
+          <span class="role">Vice Secretary</span>
+          <span class="name">Janudi Mehansa Senerath Yapa</span>
+        </li>
+        <li>
+          <span class="role">Chief Organizer</span>
+          <span class="name">Senuli Piyansa Gamage</span>
+        </li>
+        <li>
+          <span class="role">Event Coordinators</span>
+          <span class="name">Methuka Damsas, Yemeema Juno</span>
+        </li>
+        <li>
+          <span class="role">Organizers</span>
+          <span class="name">Vinara Sasmi Wijewardana, Claudia de Silva, Danuni Damdini</span>
+        </li>
+        <li>
+          <span class="role">Technical Coordinator</span>
+          <span class="name">Maleesha Sadew</span>
+        </li>
+      </ul>
+    </div>
+
+    <div class="team-credit" aria-label="Design and development credit">
+      Designed &amp; Developed by <span>Aken Sanketh</span>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var card = document.getElementById('muons-team-card');
+    var btn  = document.getElementById('muons-team-card-hide');
+    if (!card || !btn) return;
+
+    btn.addEventListener('click', function () {
+      card.classList.add('is-hiding');
+      setTimeout(function () {
+        card.style.display = 'none';
+      }, 320);
+    });
+  });
+</script>
