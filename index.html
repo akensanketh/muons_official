@@ -3,20 +3,91 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>MUONS | Media Unit Official</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet" />
-    <link href="css/muons-override.css" rel="stylesheet" />
+    <title>MUONS | Official Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@300;400;600&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --bg-carbon: #010103;
-            --accent-cyan: #00aaff;
+            --accent-cyan: #11CDEF;
             --text-main: #f5f7ff;
             --text-muted: rgba(245,247,255,0.7);
+            --hdr-h: 84px;
         }
 
-        /* Hero CSS Integration */
-        .muons-hero-wrapper {
+        body, html {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-carbon);
+            color: var(--text-main);
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* --- PROFESSIONAL HEADER STYLES --- */
+        #muons-header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+            transition: transform 0.3s ease;
+        }
+
+        .mh-wrap {
+            background: rgba(1, 1, 3, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(17, 205, 239, 0.15);
+            height: var(--hdr-h);
+            display: flex;
+            align-items: center;
+            padding: 0 5%;
+            transition: all 0.3s ease;
+        }
+
+        .header-hidden { transform: translateY(-100%); }
+        .scrolled .mh-wrap { height: 65px; background: rgba(1, 1, 3, 0.95); }
+
+        .mh-inner {
+            display: flex;
+            width: 100%;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .mh-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--accent-cyan);
+            letter-spacing: 2px;
+        }
+
+        .mh-logo-img { height: 40px; border-radius: 8px; }
+
+        .mh-nav {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .mh-link {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+        }
+
+        .mh-link:hover { color: var(--accent-cyan); }
+
+        /* --- HERO SECTION --- */
+                .muons-hero-wrapper {
             position: relative;
             min-height: 100vh;
             width: 100%;
@@ -24,101 +95,84 @@
             color: var(--text-main);
             overflow: hidden;
             background-color: var(--bg-carbon);
+            /* Triple-layer gradient for deep Cyberpunk feel */
             background-image:
-                radial-gradient(circle at 0% 0%, rgba(0,170,255,0.35) 0, transparent 50%),
-                radial-gradient(circle at 100% 100%, rgba(0,0,135,0.8) 0, transparent 55%),
-                radial-gradient(circle at 100% 0%, rgba(0,50,140,0.6) 0, transparent 55%);
-            background-size: 220% 220%;
-            animation: muonsBgMove 18s ease-in-out infinite alternate;
+                radial-gradient(circle at 0% 0%, rgba(0, 170, 255, 0.35) 0, transparent 50%),
+                radial-gradient(circle at 100% 100%, rgba(0, 0, 135, 0.8) 0, transparent 55%),
+                radial-gradient(circle at 100% 0%, rgba(0, 50, 140, 0.6) 0, transparent 55%);
+            background-size: 200% 200%;
+            animation: muonsBgMove 15s ease-in-out infinite alternate;
         }
 
-        @keyframes muonsBgMove {
-            0% { background-position: 0% 0%, 100% 100%, 100% 0%; }
+        
             50% { background-position: 50% 30%, 60% 80%, 20% 20%; }
             100% { background-position: 100% 0%, 0% 100%, 0% 0%; }
         }
 
-        .muons-hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 2rem;
-            text-align: center;
-        }
-
         .muons-hero-title {
             font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: clamp(2.8rem, 8vw, 4rem);
+            font-size: clamp(3rem, 8vw, 5rem);
             letter-spacing: 0.3em;
-            text-transform: uppercase;
-            margin-bottom: 0.75rem;
-            color: var(--text-main) !important;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
         }
 
-        .muons-hero-subtitle {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--text-muted) !important;
-            margin-bottom: 1.6rem;
+        @media (max-width: 768px) {
+            .mh-nav { display: none; }
         }
-
-        .muons-hero-motto {
-            display: inline-flex;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 0.7rem;
-            padding: 0.6rem 1.2rem;
-            border-radius: 999px;
-            border: 1px solid rgba(0,170,255,0.3);
-            background: rgba(2,3,12,0.95);
-            font-size: 0.75rem;
-            letter-spacing: 0.18em;
-        }
-
-        .muons-hero-motto span { color: var(--accent-cyan) !important; }
-        .muons-hero-motto-sep { width: 1px; height: 14px; background: rgba(245,247,255,0.3); }
-
-        /* Navigation Fix */
-        .navbar { background: rgba(1, 1, 3, 0.8) !important; backdrop-filter: blur(10px); }
     </style>
 </head>
-<body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0">
-        <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
-            <div class="container px-5">
-                <a class="navbar-brand" href="index.html">MUONS</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Victories</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        
-        <div class="muons-hero-wrapper">
-          <section class="muons-hero" aria-label="MUONS hero">
-            <div class="muons-hero-inner">
-              <h1 class="muons-hero-title">MUONS</h1>
-              <div class="muons-hero-subtitle">Media Unit Of Negombo Southernians</div>
-              <div class="muons-hero-motto">
-                <span>#PROVE</span>
-                <div class="muons-hero-motto-sep"></div>
-                <span>#THRIVE</span>
-                <div class="muons-hero-motto-sep"></div>
-                <span>#OVERCOME</span>
-              </div>
-            </div>
-          </section>
+<body>
+
+<header id="muons-header">
+    <div class="mh-wrap">
+        <div class="mh-inner">
+            <a href="#" class="mh-brand">
+                <img src="https://muons.rf.gd/wp-content/uploads/2025/08/BG-1.png" alt="Logo" class="mh-logo-img">
+                <span>MUONS</span>
+            </a>
+
+            <nav>
+                <ul class="mh-nav">
+                    <li><a class="mh-link" href="#">Home</a></li>
+                    <li><a class="mh-link" href="#">Victories</a></li>
+                    <li><a class="mh-link" href="#">Technical</a></li>
+                    <li><a class="mh-link" href="#">Profile</a></li>
+                </ul>
+            </nav>
+            
+            <div style="width: 40px;" class="d-none d-lg-block"></div> 
         </div>
-    </main>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="js/scripts.js"></script>
+    </div>
+</header>
+
+<div class="muons-hero-wrapper">
+    <div class="muons-hero-inner">
+        <h1 class="muons-hero-title">MUONS</h1>
+        <div style="font-size: 0.9rem; letter-spacing: 0.2em; color: var(--text-muted);">
+            MEDIA UNIT OF NEGOMBO SOUTHERNIANS
+        </div>
+    </div>
+</div>
+
+<script>
+    const header = document.getElementById('muons-header');
+    let lastScroll = 0;
+
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll > 50) { header.classList.add('scrolled'); } 
+        else { header.classList.remove('scrolled'); }
+
+        if (currentScroll > lastScroll && currentScroll > 100) {
+            header.classList.add('header-hidden');
+        } else {
+            header.classList.remove('header-hidden');
+        }
+        lastScroll = currentScroll;
+    });
+</script>
+
 </body>
 </html>
+
