@@ -28,4 +28,5 @@ This repository contains the source code for the MUONS official portal.
 Media Unit Of Negombo Southernians
 
 ## ⚖️ License
-Copyright (c) 2026 Aken Sanketh. This project is released under the **MIT License**.
+This project is **Proprietary**. All rights are reserved by Aken Sanketh and MUONS. 
+See the [LICENSE](LICENSE) file for details.
