@@ -2,7 +2,7 @@
 ### Media Unit Of Negombo Southernians
 
 ![MUONS Banner](https://img.shields.io/badge/Aesthetic-Carbon_%26_Cyan-00f2ff?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-00aaff?style=for-the-badge)
+![License](https://img.shields.io/badge/License-Proprietary-00aaff?style=for-the-badge&logo=github&logoColor=fff&labelColor=010103)
 ![Status](https://img.shields.io/badge/System-Active-green?style=for-the-badge)
 
 Welcome to the central hub for **MUONS**. This portal is a high-tech corporate interface designed for the Media Unit of Negombo Southernians, managed by **Aken Sanketh**.
