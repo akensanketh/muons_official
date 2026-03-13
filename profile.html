@@ -1,0 +1,143 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>MUONS | Member Profile</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-carbon: #010103;
+            --accent-cyan: #11CDEF;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(17, 205, 239, 0.2);
+        }
+
+        body {
+            background-color: var(--bg-carbon);
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            margin: 0;
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* --- SIDEBAR ID CARD --- */
+        .sidebar {
+            width: 320px;
+            background: rgba(1, 1, 3, 0.9);
+            border-right: 1px solid var(--border);
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100vh;
+        }
+
+        .profile-pic-container {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-cyan);
+            padding: 5px;
+            margin-bottom: 20px;
+            box-shadow: 0 0 20px rgba(17, 205, 239, 0.3);
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Orbitron';
+            font-size: 2.5rem;
+        }
+
+        .member-name { font-family: 'Orbitron'; font-size: 1.2rem; margin: 10px 0; letter-spacing: 1px; }
+        .member-rank { color: var(--accent-cyan); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* --- MAIN CONTENT --- */
+        .main-content {
+            margin-left: 320px;
+            flex-grow: 1;
+            padding: 60px;
+        }
+
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .glass-panel {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+        }
+
+        .panel-title {
+            font-family: 'Orbitron';
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            text-transform: uppercase;
+        }
+
+        /* --- STAT BARS --- */
+        .stat-row { margin-bottom: 15px; }
+        .stat-label { font-size: 0.7rem; margin-bottom: 5px; display: block; }
+        .stat-bar-bg { height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; }
+        .stat-bar-fill { height: 100%; background: var(--accent-cyan); border-radius: 2px; box-shadow: 0 0 10px var(--accent-cyan); }
+
+    </style>
+</head>
+<body>
+
+<aside class="sidebar">
+    <div class="profile-pic-container">
+        <div class="profile-pic">AS</div>
+    </div>
+    <div class="member-name">Aken Sanketh</div>
+    <div class="member-rank">Lead Developer</div>
+    
+    <div style="margin-top: 50px; width: 100%;">
+        <div style="font-size: 0.7rem; color: #555; margin-bottom: 10px;">AUTH_TOKEN: 77-MUONS-X</div>
+        <div style="font-size: 0.7rem; color: #555;">STATUS: VERIFIED</div>
+    </div>
+</aside>
+
+<main class="main-content">
+    <h1 style="font-family: 'Orbitron'; margin-bottom: 40px; letter-spacing: 5px;">MEMBER_STATION</h1>
+
+    <div class="dashboard-grid">
+        <div class="glass-panel">
+            <div class="panel-title">Technical Stats</div>
+            <div class="stat-row">
+                <span class="stat-label">WEB DEVELOPMENT</span>
+                <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 95%;"></div></div>
+            </div>
+            <div class="stat-row">
+                <span class="stat-label">UI DESIGN</span>
+                <div class="stat-bar-bg"><div class="stat-bar-fill" style="width: 80%;"></div></div>
+            </div>
+        </div>
+
+        <div class="glass-panel">
+            <div class="panel-title">Mission Logs</div>
+            <ul style="list-style: none; padding: 0; font-size: 0.8rem; line-height: 2;">
+                <li>> Updated MUONS Portal CSS</li>
+                <li>> Deployed Restricted License</li>
+                <li>> Created Member Dash Core</li>
+            </ul>
+        </div>
+    </div>
+</main>
+
+</body>
+</html>
