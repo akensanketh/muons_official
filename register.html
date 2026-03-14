@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>MUONS | Recruitment Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #050507; --accent: #11CDEF; --border: rgba(17, 205, 239, 0.2); --glass: rgba(255, 255, 255, 0.03); }
+        
+        body { 
+            background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; 
+            margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh;
+            background: radial-gradient(circle at center, #0a0a0f 0%, #050507 100%);
+        }
+
+        .register-box {
+            width: 400px; padding: 40px; background: var(--glass);
+            border: 1px solid var(--border); border-radius: 15px;
+            backdrop-filter: blur(20px); box-shadow: 0 0 50px rgba(17, 205, 239, 0.05);
+        }
+
+        h2 { font-family: 'Orbitron'; text-align: center; letter-spacing: 3px; color: var(--accent); margin-bottom: 30px; }
+
+        .field { margin-bottom: 20px; }
+        label { display: block; font-family: 'JetBrains Mono'; font-size: 0.7rem; color: #888; margin-bottom: 8px; text-transform: uppercase; }
+        
+        input, select {
+            width: 100%; padding: 12px; background: rgba(0,0,0,0.5);
+            border: 1px solid var(--border); border-radius: 8px;
+            color: #fff; font-family: 'Inter'; outline: none; box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--accent); box-shadow: 0 0 10px rgba(17, 205, 239, 0.2); }
+
+        #submitBtn {
+            width: 100%; padding: 15px; background: var(--accent);
+            border: none; border-radius: 8px; font-family: 'Orbitron';
+            font-weight: 600; cursor: pointer; margin-top: 10px; transition: 0.3s;
+        }
+
+        #submitBtn:disabled { background: #333; color: #777; cursor: not-allowed; }
+
+        /* Success Animation */
+        .status-msg { 
+            display: none; text-align: center; font-family: 'JetBrains Mono'; 
+            font-size: 0.8rem; margin-top: 15px; color: var(--accent); 
+        }
+
+        .footer-links { text-align: center; margin-top: 20px; font-size: 0.8rem; color: #555; }
+        .footer-links a { color: var(--accent); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="register-box">
+    <h2>NEW_RECRUIT</h2>
+    <form id="regForm">
+        <div class="field">
+            <label>Full Name</label>
+            <input type="text" id="regName" placeholder="Aken Sanketh" required>
+        </div>
+        <div class="field">
+            <label>MUONS Email</label>
+            <input type="email" id="regEmail" placeholder="name@muons.com" required>
+        </div>
+        <div class="field">
+            <label>System Role</label>
+            <select id="regRole">
+                <option value="Lead Developer">Lead Developer</option>
+                <option value="Cinematographer">Cinematographer</option>
+                <option value="Editor">Editor</option>
+            </select>
+        </div>
+        <div class="field">
+            <label>Secure Password</label>
+            <input type="password" id="regPass" placeholder="••••••••" required>
+        </div>
+        
+        <button type="submit" id="submitBtn">INITIALIZE PROTOCOL</button>
+        <div id="statusMsg" class="status-msg">UPLOADING TO MUONS_VAULT...</div>
+    </form>
+    
+    <div class="footer-links">
+        Already registered? <a href="index.html">Access Station</a>
+    </div>
+</div>
+
+<script>
+    const CONFIG = {
+        url: "https://script.google.com/macros/s/AKfycbwoE71yBG1RKr3q9HqZXSMM0T0APEcKU-_4NM9iq6waABIJwl1X8Eo5AylUBjMg36IQHw/exec"
+    };
+
+    document.getElementById('regForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        const btn = document.getElementById('submitBtn');
+        const status = document.getElementById('statusMsg');
+
+        // UI Transformation
+        btn.disabled = true;
+        btn.innerText = "PROCESSING...";
+        status.style.display = "block";
+
+        const payload = {
+            action: "register",
+            name: document.getElementById('regName').value,
+            email: document.getElementById('regEmail').value,
+            role: document.getElementById('regRole').value,
+            pass: document.getElementById('regPass').value
+        };
+
+        try {
+            const response = await fetch(CONFIG.url, {
+                method: "POST",
+                body: JSON.stringify(payload)
+            });
+
+            const result = await response.text();
+            
+            if (result === "Registered") {
+                // UI Success State
+                status.innerText = "SUCCESS: ACCOUNT_CREATED_IN_DATABASE";
+                btn.innerText = "ACCESS GRANTED";
+                btn.style.background = "#00ff88"; 
+
+                // Let the user see the success before redirecting
+                setTimeout(() => {
+                    localStorage.setItem("userEmail", payload.email);
+                    window.location.href = "profile.html";
+                }, 2000);
+            }
+        } catch (err) {
+            status.innerText = "ERROR: CONNECTION_FAILURE";
+            btn.disabled = false;
+            btn.innerText = "RETRY INITIALIZATION";
+        }
+    });
+</script>
+
+</body>
+</html>
