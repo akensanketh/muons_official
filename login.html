@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>MUONS | System Access</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Inter:wght@300;400;600&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg: #050507; --accent: #11CDEF; --border: rgba(17, 205, 239, 0.2); --glass: rgba(255, 255, 255, 0.03); }
+        
+        body { 
+            background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; 
+            margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh;
+            background: radial-gradient(circle at center, #0a0a0f 0%, #050507 100%);
+            overflow: hidden;
+        }
+
+        /* Subtle background grid effect */
+        body::before {
+            content: ""; position: absolute; width: 200%; height: 200%;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 50px 50px; opacity: 0.1; transform: rotate(15deg); z-index: -1;
+        }
+
+        .login-box {
+            width: 360px; padding: 45px; background: var(--glass);
+            border: 1px solid var(--border); border-radius: 15px;
+            backdrop-filter: blur(25px); box-shadow: 0 0 60px rgba(0,0,0,0.8);
+            text-align: center;
+        }
+
+        .logo-area { margin-bottom: 30px; }
+        .logo-area h1 { font-family: 'Orbitron'; font-size: 1.8rem; letter-spacing: 5px; color: var(--accent); margin: 0; text-shadow: 0 0 15px var(--accent); }
+        .logo-area p { font-family: 'JetBrains Mono'; font-size: 0.6rem; color: #555; margin-top: 5px; }
+
+        .field { margin-bottom: 20px; text-align: left; }
+        label { display: block; font-family: 'JetBrains Mono'; font-size: 0.65rem; color: #888; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+        
+        input {
+            width: 100%; padding: 14px; background: rgba(0,0,0,0.6);
+            border: 1px solid var(--border); border-radius: 8px;
+            color: #fff; font-family: 'Inter'; outline: none; box-sizing: border-box;
+            transition: 0.3s;
+        }
+
+        input:focus { border-color: var(--accent); box-shadow: 0 0 15px rgba(17, 205, 239, 0.2); }
+
+        #loginBtn {
+            width: 100%; padding: 15px; background: var(--accent);
+            border: none; border-radius: 8px; font-family: 'Orbitron';
+            font-weight: 600; cursor: pointer; margin-top: 15px; color: #000;
+            transition: 0.3s; letter-spacing: 1px;
+        }
+
+        #loginBtn:hover { box-shadow: 0 0 25px var(--accent); transform: translateY(-2px); }
+
+        .status-msg { height: 20px; font-family: 'JetBrains Mono'; font-size: 0.7rem; margin-top: 15px; color: #ff4444; visibility: hidden; }
+
+        .nav-link { margin-top: 25px; font-size: 0.75rem; color: #555; }
+        .nav-link a { color: var(--accent); text-decoration: none; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<div class="login-box">
+    <div class="logo-area">
+        <h1>MUONS</h1>
+        <p>STATION_AUTHENTICATION_REQUIRED</p>
+    </div>
+
+    <form id="loginForm">
+        <div class="field">
+            <label>Neural Link Email</label>
+            <input type="email" id="email" placeholder="name@muons.com" required>
+        </div>
+        <div class="field">
+            <label>Security Keyphrase</label>
+            <input type="password" id="pass" placeholder="••••••••" required>
+        </div>
+        
+        <button type="submit" id="loginBtn">AUTHORIZE_ENTRY</button>
+        <div id="statusMsg" class="status-msg">INVALID_CREDENTIALS</div>
+    </form>
+    
+    <div class="nav-link">
+        New to the unit? <a href="register.html">Register Recruit</a>
+    </div>
+</div>
+
+<script>
+    const CONFIG = {
+        url: "https://script.google.com/macros/s/AKfycbwoE71yBG1RKr3q9HqZXSMM0T0APEcKU-_4NM9iq6waABIJwl1X8Eo5AylUBjMg36IQHw/exec"
+    };
+
+    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const btn = document.getElementById('loginBtn');
+        const status = document.getElementById('statusMsg');
+        const email = document.getElementById('email').value;
+        const pass = document.getElementById('pass').value;
+
+        btn.innerText = "DECRYPTING...";
+        status.style.visibility = "hidden";
+
+        try {
+            // We use the getProfile action to verify credentials
+            const res = await fetch(`${CONFIG.url}?action=getProfile&email=${email}`);
+            const user = await res.json();
+
+            // Check if user exists and password matches
+            if (user && user[1] === pass) {
+                btn.innerText = "ACCESS_GRANTED";
+                btn.style.background = "#00ff88";
+                localStorage.setItem("userEmail", email);
+                
+                setTimeout(() => {
+                    window.location.href = "profile.html";
+                }, 1000);
+            } else {
+                throw new Error("Invalid");
+            }
+        } catch (err) {
+            status.style.visibility = "visible";
+            btn.innerText = "AUTHORIZE_ENTRY";
+            btn.style.background = "var(--accent)";
+        }
+    });
+</script>
+
+</body>
+</html>
