@@ -1,5 +1,5 @@
 /**
- * SANDHVANI '26 - Stylesheet
+ * SANDHVANI '26 - Stylesheet (MUONS Theme)
  * MUONS Media Competition
  * Designed & Developed by Aken Sanketh
  */
@@ -15,25 +15,25 @@
 }
 
 :root {
-  /* Colors - Sandhvani Theme */
-  --primary: #ff006e;
-  --primary-dark: #d90058;
-  --primary-light: #ff4d94;
-  --secondary: #8338ec;
-  --accent: #3a86ff;
-  --accent-cyan: #00f5ff;
+  /* Colors - MUONS Theme (Cyan/Blue) */
+  --primary: #00aaff;
+  --primary-dark: #0088cc;
+  --primary-light: #33bbff;
+  --secondary: #0B3BFF;
+  --accent: #00f5ff;
+  --accent-dark: #00ccdd;
   
   --bg-carbon: #010103;
   --bg-dark: #0a0a0f;
   --bg-darker: #050508;
-  --bg-card: rgba(20, 20, 30, 0.6);
+  --bg-card: rgba(10, 20, 40, 0.6);
   
   --text-main: #f5f7ff;
   --text-muted: rgba(245, 247, 255, 0.7);
   --text-dim: rgba(245, 247, 255, 0.5);
   
-  --border-subtle: rgba(255, 255, 255, 0.1);
-  --border-glow: rgba(255, 0, 110, 0.3);
+  --border-subtle: rgba(0, 170, 255, 0.2);
+  --border-glow: rgba(0, 170, 255, 0.4);
   
   /* Typography */
   --font-display: 'Orbitron', sans-serif;
@@ -77,7 +77,7 @@ body {
 /* === SELECTION === */
 ::selection {
   background-color: var(--primary);
-  color: white;
+  color: var(--bg-carbon);
 }
 
 /* === SCROLLBAR === */
@@ -108,7 +108,7 @@ body {
 }
 
 .sandhvani-nav.scrolled {
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.2);
 }
 
 .nav-container {
@@ -127,12 +127,12 @@ body {
   letter-spacing: 0.2em;
   color: var(--primary);
   text-decoration: none;
-  text-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+  text-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
   transition: all var(--transition-fast);
 }
 
 .nav-logo:hover {
-  text-shadow: 0 0 30px rgba(255, 0, 110, 0.8);
+  text-shadow: 0 0 30px rgba(0, 170, 255, 0.8);
   transform: scale(1.05);
 }
 
@@ -196,8 +196,8 @@ body {
   align-items: center;
   justify-content: center;
   overflow: hidden;
-  background: radial-gradient(circle at 50% 50%, rgba(255, 0, 110, 0.1), transparent 70%),
-              radial-gradient(circle at 80% 20%, rgba(131, 56, 236, 0.15), transparent 50%),
+  background: radial-gradient(circle at 50% 50%, rgba(0, 170, 255, 0.15), transparent 70%),
+              radial-gradient(circle at 80% 20%, rgba(11, 59, 255, 0.2), transparent 50%),
               var(--bg-carbon);
   padding-top: 80px;
 }
@@ -236,7 +236,7 @@ body {
   align-items: center;
   gap: 0.5rem;
   padding: 0.5rem 1rem;
-  background: rgba(255, 0, 110, 0.1);
+  background: rgba(0, 170, 255, 0.1);
   border: 1px solid var(--border-glow);
   border-radius: 999px;
   font-size: 0.75rem;
@@ -248,10 +248,10 @@ body {
 
 @keyframes badgePulse {
   0%, 100% {
-    box-shadow: 0 0 10px rgba(255, 0, 110, 0.3);
+    box-shadow: 0 0 10px rgba(0, 170, 255, 0.3);
   }
   50% {
-    box-shadow: 0 0 20px rgba(255, 0, 110, 0.6);
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.6);
   }
 }
 
@@ -281,27 +281,26 @@ body {
   font-size: clamp(3rem, 10vw, 7rem);
   font-weight: 900;
   letter-spacing: 0.15em;
-  background: linear-gradient(135deg, var(--primary), var(--secondary), var(--accent));
+  background: linear-gradient(135deg, var(--primary), var(--accent), var(--secondary));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 80px rgba(255, 0, 110, 0.5);
   animation: titleGlow 3s ease-in-out infinite alternate;
 }
 
 @keyframes titleGlow {
   from {
-    filter: drop-shadow(0 0 20px rgba(255, 0, 110, 0.4));
+    filter: drop-shadow(0 0 20px rgba(0, 170, 255, 0.4));
   }
   to {
-    filter: drop-shadow(0 0 40px rgba(255, 0, 110, 0.8));
+    filter: drop-shadow(0 0 40px rgba(0, 170, 255, 0.8));
   }
 }
 
 .title-year {
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 700;
-  color: var(--accent-cyan);
+  color: var(--accent);
   text-shadow: 0 0 30px rgba(0, 245, 255, 0.5);
 }
 
@@ -380,11 +379,11 @@ body {
   background: linear-gradient(135deg, var(--primary), var(--primary-dark));
   border-color: var(--primary);
   color: white;
-  box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.3);
 }
 
 .btn-primary:hover {
-  box-shadow: 0 15px 40px rgba(255, 0, 110, 0.5);
+  box-shadow: 0 15px 40px rgba(0, 170, 255, 0.5);
   transform: translateY(-2px);
 }
 
@@ -521,6 +520,7 @@ body {
 .feature-item:hover {
   border-color: var(--primary);
   transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.15);
 }
 
 .feature-icon {
@@ -638,11 +638,11 @@ body {
 
 .category-card:hover {
   transform: translateY(-10px);
-  box-shadow: 0 20px 60px rgba(255, 0, 110, 0.2);
+  box-shadow: 0 20px 60px rgba(0, 170, 255, 0.2);
 }
 
 .category-card.featured {
-  background: linear-gradient(135deg, rgba(255, 0, 110, 0.1), rgba(131, 56, 236, 0.1));
+  background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), rgba(11, 59, 255, 0.1));
   border-color: var(--primary);
 }
 
@@ -666,7 +666,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, rgba(255, 0, 110, 0.2), rgba(131, 56, 236, 0.2));
+  background: linear-gradient(135deg, rgba(0, 170, 255, 0.2), rgba(11, 59, 255, 0.2));
   border-radius: 12px;
   margin-bottom: 1.5rem;
   color: var(--primary);
@@ -770,7 +770,7 @@ body {
 .timeline-item:hover .marker-dot,
 .timeline-item.active .marker-dot {
   border-color: var(--primary);
-  box-shadow: 0 0 20px rgba(255, 0, 110, 0.5);
+  box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
 }
 
 .timeline-item.active .marker-dot {
@@ -789,6 +789,7 @@ body {
 .timeline-item:hover .timeline-content {
   border-color: var(--primary);
   transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.15);
 }
 
 .timeline-date {
@@ -882,7 +883,7 @@ body {
 .form-group textarea:focus {
   outline: none;
   border-color: var(--primary);
-  box-shadow: 0 0 0 3px rgba(255, 0, 110, 0.1);
+  box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.1);
 }
 
 .form-group textarea {
@@ -960,7 +961,7 @@ body {
 
 .contact-link:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.3);
 }
 
 /* === FOOTER === */
@@ -1050,6 +1051,7 @@ body {
   border-color: var(--primary);
   color: var(--primary);
   transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 170, 255, 0.2);
 }
 
 .footer-bottom {
@@ -1101,7 +1103,7 @@ body {
   background: var(--primary);
   color: white;
   transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(255, 0, 110, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.3);
 }
 
 /* === RESPONSIVE === */
