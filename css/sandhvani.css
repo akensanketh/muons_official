@@ -1197,3 +1197,223 @@ body {
   outline: 2px solid var(--primary);
   outline-offset: 4px;
 }
+
+/* === ABOUT SECTION === */
+.sandhvani-about {
+  padding: clamp(60px, 10vh, 120px) clamp(20px, 5vw, 40px);
+  background: linear-gradient(180deg, var(--bg-carbon), var(--bg-dark));
+}
+
+.about-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-features {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-medium);
+}
+
+.feature-item:hover {
+  border-color: var(--primary);
+  transform: translateX(10px);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.15);
+}
+
+.feature-icon {
+  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 10px;
+  color: white;
+}
+
+.feature-content h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.feature-content p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+.about-visual {
+  position: relative;
+}
+
+.visual-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  aspect-ratio: 16 / 9;
+  background: var(--bg-darker);
+}
+
+.card-glow {
+  position: absolute;
+  inset: -100px;
+  background: radial-gradient(circle, var(--primary), transparent 70%);
+  opacity: 0.2;
+  animation: glowRotate 10s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes glowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Video Styles */
+.about-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  z-index: 2;
+  transition: transform var(--transition-slow);
+}
+
+.visual-card:hover .about-video {
+  transform: scale(1.05);
+}
+
+/* Video Control Button */
+.video-control {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: rgba(0, 170, 255, 0.9);
+  border: 2px solid white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-medium);
+  backdrop-filter: blur(10px);
+}
+
+.video-control:hover {
+  background: rgba(0, 170, 255, 1);
+  transform: scale(1.1);
+  box-shadow: 0 10px 30px rgba(0, 170, 255, 0.5);
+}
+
+.video-control:focus {
+  outline: 2px solid var(--primary);
+  outline-offset: 4px;
+}
+
+.video-control svg {
+  color: white;
+  transition: opacity var(--transition-fast);
+}
+
+.video-control .hidden {
+  display: none;
+}
+
+/* Video Loading State */
+.visual-card::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border: 3px solid rgba(0, 170, 255, 0.3);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: videoSpin 1s linear infinite;
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.visual-card.loading::after {
+  opacity: 1;
+}
+
+@keyframes videoSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Muted Indicator */
+.muted-indicator {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 0.5rem 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 8px;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--primary);
+  z-index: 10;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.visual-card:hover .muted-indicator {
+  opacity: 1;
+}
+
+/* Responsive Video */
+@media (max-width: 1024px) {
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-visual {
+    order: -1;
+  }
+}
+
+@media (max-width: 640px) {
+  .visual-card {
+    aspect-ratio: 4 / 3;
+  }
+  
+  .video-control {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
+  
+  .video-control svg {
+    width: 32px;
+    height: 32px;
+  }
+}

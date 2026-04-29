@@ -680,3 +680,75 @@ function initMouseTrail() {
 
 // Uncomment to enable mouse trail
 // initMouseTrail();
+
+
+// ===================================
+// VIDEO CONTROL
+// ===================================
+
+function initVideoControl() {
+  const videoCard = document.querySelector('.visual-card');
+  const video = document.querySelector('.about-video');
+  const controlBtn = document.querySelector('.video-control');
+  const playIcon = document.querySelector('.play-icon');
+  const pauseIcon = document.querySelector('.pause-icon');
+  
+  if (!video || !controlBtn) return;
+  
+  // Toggle play/pause
+  controlBtn.addEventListener('click', () => {
+    if (video.paused) {
+      video.play();
+      playIcon.classList.add('hidden');
+      pauseIcon.classList.remove('hidden');
+    } else {
+      video.pause();
+      playIcon.classList.remove('hidden');
+      pauseIcon.classList.add('hidden');
+    }
+  });
+  
+  // Click on video to toggle
+  video.addEventListener('click', () => {
+    controlBtn.click();
+  });
+  
+  // Loading state
+  video.addEventListener('loadstart', () => {
+    videoCard.classList.add('loading');
+  });
+  
+  video.addEventListener('canplay', () => {
+    videoCard.classList.remove('loading');
+  });
+  
+  // Update button state when video ends
+  video.addEventListener('ended', () => {
+    playIcon.classList.remove('hidden');
+    pauseIcon.classList.add('hidden');
+  });
+  
+  // Pause video when it goes out of viewport (performance optimization)
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting && !video.paused) {
+        video.pause();
+        playIcon.classList.remove('hidden');
+        pauseIcon.classList.add('hidden');
+      }
+    });
+  }, { threshold: 0.5 });
+  
+  observer.observe(video);
+}
+
+// Add to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+  
+  // ... existing code ...
+  
+  // Initialize video control
+  initVideoControl();
+  
+  console.log('🎬 Sandhvani \'26 Website Loaded Successfully');
+});
