@@ -342,3 +342,71 @@ if (window.performance && console.table) {
     'Total Load Time': `${perfData.loadEventEnd - perfData.fetchStart}ms`
   });
 }
+
+
+// Add this to the initialization section in main.js
+
+// ===================================
+// MAIN NAVIGATION
+// ===================================
+
+function initMainNavigation() {
+  const nav = document.querySelector('.main-nav');
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  const navLinks = document.querySelectorAll('.nav-menu a');
+  
+  if (!nav) return;
+  
+  // Scroll effect
+  const handleScroll = debounce(() => {
+    if (window.scrollY > 100) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+  }, 10);
+  
+  window.addEventListener('scroll', handleScroll);
+  
+  // Mobile menu toggle
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      navToggle.classList.toggle('active');
+      
+      // Animate hamburger
+      const spans = navToggle.querySelectorAll('span');
+      if (navMenu.classList.contains('active')) {
+        spans[0].style.transform = 'rotate(45deg) translate(5px, 5px)';
+        spans[1].style.opacity = '0';
+        spans[2].style.transform = 'rotate(-45deg) translate(7px, -6px)';
+      } else {
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+      }
+    });
+    
+    // Close menu on link click
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        navToggle.classList.remove('active');
+        const spans = navToggle.querySelectorAll('span');
+        spans[0].style.transform = '';
+        spans[1].style.opacity = '';
+        spans[2].style.transform = '';
+      });
+    });
+  }
+}
+
+// Add this function call to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+  
+  // Initialize main navigation
+  initMainNavigation();
+  
+  // ... rest of your initialization code
+});
