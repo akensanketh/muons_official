@@ -1358,6 +1358,75 @@
       outline: 2px solid var(--primary);
       outline-offset: 4px;
     }
+
+
+
+    /* Category Cards - Clickable */
+.category-link {
+  text-decoration: none;
+  color: inherit;
+  display: block;
+  cursor: pointer;
+}
+
+.category-link:hover {
+  text-decoration: none;
+}
+
+.category-link .category-title {
+  transition: color var(--transition-fast);
+}
+
+.category-link:hover .category-title {
+  color: var(--primary);
+}
+
+.category-link .category-icon {
+  transition: all var(--transition-medium);
+}
+
+.category-link:hover .category-icon {
+  transform: scale(1.1);
+}
+
+/* Featured Card Style (for Short Film) */
+.featured-card {
+  position: relative;
+}
+
+.featured-card {
+  background: linear-gradient(135deg, rgba(0, 170, 255, 0.1), rgba(11, 59, 255, 0.1));
+  border-color: var(--primary);
+}
+
+.featured-badge {
+  position: absolute;
+  top: -12px;
+  right: 20px;
+  padding: 0.4rem 1rem;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  border-radius: 999px;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: white;
+  z-index: 10;
+}
+
+/* Ensure proper grid layout */
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .categories-grid {
+    grid-template-columns: 1fr;
+  }
+}
   </style>
 </head>
 
@@ -1549,139 +1618,236 @@
   </section>
 
   <!-- Categories Section -->
-  <section class="sandhvani-categories full-bleed" id="categories">
-    <canvas id="categories-bg" class="categories-canvas" aria-hidden="true"></canvas>
-    
-    <div class="categories-container">
-      <div class="section-header">
-        <div class="section-label">Competition Categories</div>
-        <h2 class="section-title">Choose Your Battleground</h2>
-        <p class="section-description">
-          Select your category and showcase your skills. Each category has specific requirements and judging criteria.
-        </p>
-      </div>
+<section class="sandhvani-categories full-bleed" id="categories">
+  <canvas id="categories-bg" class="categories-canvas" aria-hidden="true"></canvas>
+  
+  <div class="categories-container">
+    <div class="section-header">
+      <div class="section-label">Competition Categories</div>
+      <h2 class="section-title">Choose Your Battleground</h2>
+      <p class="section-description">
+        Select your category and showcase your skills. Each category has specific requirements and judging criteria.
+      </p>
+    </div>
 
-      <div class="categories-grid">
-        <div class="category-card">
-          <div class="category-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
-              <circle cx="12" cy="13" r="4"></circle>
-            </svg>
-          </div>
-          <h3 class="category-title">Photography</h3>
-          <p class="category-description">
-            Capture moments that tell stories. From portraits to landscapes, show us your unique perspective.
-          </p>
-          <ul class="category-specs">
-            <li>Digital or Film</li>
-            <li>Original work only</li>
-            <li>Max 3 submissions</li>
-          </ul>
-          <div class="category-badge">Open</div>
+    <div class="categories-grid">
+      <!-- 1. Announcing -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" y1="19" x2="12" y2="23"></line>
+            <line x1="8" y1="23" x2="16" y2="23"></line>
+          </svg>
         </div>
+        <h3 class="category-title">Announcing</h3>
+        <p class="category-description">
+          A prestige event conducted in English and Sinhala across Junior, Intermediate, and Senior categories. Deliver a flawless performance using official scripts.
+        </p>
+        <ul class="category-specs">
+          <li>Max 5 minutes duration</li>
+          <li>Single continuous take (No editing)</li>
+          <li>School uniform required</li>
+          <li>Submit by midnight 10th May</li>
+        </ul>
+        <div class="category-badge">Junior, Intermediate, and Senior</div>
+      </a>
 
-        <a href="#register" class="category-card category-link">
+      <!-- 2. Dubbing -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </div>
+        <h3 class="category-title">Dubbing</h3>
+        <p class="category-description">
+          Compete in Sinhala or English for Junior or Senior categories. Use provided clips or select your own to demonstrate vocal synchronization.
+        </p>
+        <ul class="category-specs">
+          <li>Contestant & video both visible</li>
+          <li>Strictly unedited video format</li>
+          <li>School uniform required</li>
+          <li>Submit by midnight 10th May</li>
+        </ul>
+        <div class="category-badge">Junior and Senior</div>
+      </a>
+
+      <!-- 3. Program Presenting -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+            <polyline points="17 2 12 7 7 2"></polyline>
+          </svg>
+        </div>
+        <h3 class="category-title">Program Presenting</h3>
+        <p class="category-description">
+          An online competition in Sinhala and English for Junior and Senior categories. Present a professional program segment based on provided scripts.
+        </p>
+        <ul class="category-specs">
+          <li>Max 6 minutes duration</li>
+          <li>High audio/visual quality required</li>
+          <li>Single continuous MP4 submission</li>
+          <li>Submit by midnight 10th May</li>
+        </ul>
+        <div class="category-badge">Junior and Senior</div>
+      </a>
+
+      <!-- 4. Sports Commentary -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+        </div>
+        <h3 class="category-title">Sports Commentary</h3>
+        <p class="category-description">
+          An open-category event in Sinhala and English. Provide live-style commentary for Cricket, Netball, Football, Athletics, or Rugby.
+        </p>
+        <ul class="category-specs">
+          <li>Contestant & video both visible</li>
+          <li>Continuous and unedited recording</li>
+          <li>School uniform required</li>
+          <li>Submit by midnight 10th May</li>
+        </ul>
+        <div class="category-badge">Open</div>
+      </a>
+
+      <!-- 5. Editing -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+        </div>
+        <h3 class="category-title">Editing</h3>
+        <p class="category-description">
+          A handwritten competition for Junior, Intermediate, and Senior categories. Scan or photograph manual scripts and compile into a single document.
+        </p>
+        <ul class="category-specs">
+          <li>Strict 2-3 hour time duration</li>
+          <li>Must be handwritten (No AI)</li>
+          <li>Submit as single PDF document</li>
+          <li>Deadline: 12 PM/1 PM</li>
+        </ul>
+        <div class="category-badge">Junior, Intermediate, and Senior</div>
+      </a>
+
+      <!-- 6. Technical Paper -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <h3 class="category-title">Technical Paper</h3>
+        <p class="category-description">
+          Strictly English-medium event for Open Category. This entirely paperless competition requires independent work within a fixed time frame.
+        </p>
+        <ul class="category-specs">
+          <li>1.5 hours duration</li>
+          <li>Google Form submission</li>
+          <li>AI tools strictly prohibited</li>
+          <li>Single submission only</li>
+        </ul>
+        <div class="category-badge">Open</div>
+      </a>
+
+      <!-- 7. Graphic Designing -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+        </div>
+        <h3 class="category-title">Graphic Designing</h3>
+        <p class="category-description">
+          Open Category competition where participants create digital designs based on specific themes using professional software without AI.
+        </p>
+        <ul class="category-specs">
+          <li>Submit as .jpg or .png file</li>
+          <li>Must be entirely original work</li>
+          <li>AI-generated designs disqualified</li>
+          <li>Submit by 16th May 2026</li>
+        </ul>
+        <div class="category-badge">Open</div>
+      </a>
+
+      <!-- 8. Photography -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+          </svg>
+        </div>
+        <h3 class="category-title">Photography</h3>
+        <p class="category-description">
+          Open Category divided into Color, Monochrome, and Mobile subcategories. Capture high-quality images to showcase your visual perspective.
+        </p>
+        <ul class="category-specs">
+          <li>Max 3 photos per subcategory</li>
+          <li>No drones, watermarks, or manipulation</li>
+          <li>RAW images may be requested</li>
+          <li>Submit by 16th May 2025</li>
+        </ul>
+        <div class="category-badge">Open</div>
+      </a>
+
+      <!-- 9. Cartoon Drawing -->
+      <a href="#register" class="category-card category-link">
+        <div class="category-icon">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+            <path d="M2 2l7.586 7.586"></path>
+            <circle cx="11" cy="11" r="2"></circle>
+          </svg>
+        </div>
+        <h3 class="category-title">Cartoon Drawing</h3>
+        <p class="category-description">
+          Open Category event focusing on manual artistic skill. Receive specific topics and use any coloring medium to bring illustrations to life.
+        </p>
+        <ul class="category-specs">
+          <li>Must be on A4 size paper</li>
+          <li>Any coloring medium allowed</li>
+          <li>Upload photo of drawing by link</li>
+          <li>Submit before 1:00 PM</li>
+        </ul>
+        <div class="category-badge">Open</div>
+      </a>
+
+      <!-- 10. Short Film Competition -->
+      <a href="#register" class="category-card category-link">
   <div class="category-icon">
     <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
       <polygon points="23 7 16 12 23 17 23 7"></polygon>
       <rect x="1" y="5" width="15" height="14" rx="2" ry="2"></rect>
     </svg>
   </div>
-  <h3 class="category-title">Videography</h3>
+  <h3 class="category-title">Short Film Competition</h3>
   <p class="category-description">
-    Create compelling video content. Short films, documentaries, or creative edits - bring your vision to life.
+    The premier Open Category team event for any cinematic theme. The only category that allows participants to also compete in other events.
   </p>
   <ul class="category-specs">
-    <li>Max 5 minutes</li>
-    <li>Any resolution</li>
-    <li>Creative freedom</li>
+    <li>Max 10 minutes duration</li>
+    <li>Maximum of 10 participants per team</li>
+    <li>Submission via Google Form</li>
+    <li>Submit within two weeks (By May 23rd)</li>
   </ul>
   <div class="category-badge">Open</div>
 </a>
-
-        <div class="category-card">
-          <div class="category-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
-              <circle cx="8.5" cy="8.5" r="1.5"></circle>
-              <polyline points="21 15 16 10 5 21"></polyline>
-            </svg>
-          </div>
-          <h3 class="category-title">Graphic Design</h3>
-          <p class="category-description">
-            Design that speaks volumes. Posters, logos, digital art - showcase your creative design skills.
-          </p>
-          <ul class="category-specs">
-            <li>Digital format</li>
-            <li>High resolution</li>
-            <li>Any software</li>
-          </ul>
-          <div class="category-badge">Open</div>
-        </div>
-
-        <div class="category-card">
-          <div class="category-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-              <line x1="12" y1="22.08" x2="12" y2="12"></line>
-            </svg>
-          </div>
-          <h3 class="category-title">3D Design</h3>
-          <p class="category-description">
-            Build worlds in three dimensions. Modeling, animation, or visualization - show us your 3D prowess.
-          </p>
-          <ul class="category-specs">
-            <li>Renders or animations</li>
-            <li>Any 3D software</li>
-            <li>Creativity valued</li>
-          </ul>
-          <div class="category-badge">Open</div>
-        </div>
-
-        <div class="category-card">
-          <div class="category-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path>
-              <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path>
-            </svg>
-          </div>
-          <h3 class="category-title">Content Writing</h3>
-          <p class="category-description">
-            Words that resonate. Articles, scripts, or creative writing - craft content that captivates.
-          </p>
-          <ul class="category-specs">
-            <li>Max 1000 words</li>
-            <li>Any genre</li>
-            <li>Original content</li>
-          </ul>
-          <div class="category-badge">Open</div>
-        </div>
-
-        <div class="category-card">
-          <div class="category-icon">
-            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-              <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-              <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-              <path d="M2 2l7.586 7.586"></path>
-              <circle cx="11" cy="11" r="2"></circle>
-            </svg>
-          </div>
-          <h3 class="category-title">Social Media</h3>
-          <p class="category-description">
-            Master the digital space. Create viral-worthy content for Instagram, TikTok, or YouTube.
-          </p>
-          <ul class="category-specs">
-            <li>Platform specific</li>
-            <li>Engagement focused</li>
-            <li>Creative strategy</li>
-          </ul>
-          <div class="category-badge">Open</div>
-        </div>
-      </div>
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- Timeline Section -->
   <section class="sandhvani-timeline full-bleed" id="timeline">
