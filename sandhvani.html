@@ -1427,6 +1427,100 @@
     grid-template-columns: 1fr;
   }
 }
+
+
+/* === ABOUT VISUAL & VIDEO === */
+.about-visual {
+  position: relative;
+  width: 100%;
+}
+
+.visual-card {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 2px solid var(--border-subtle);
+  background: var(--bg-darker);
+  aspect-ratio: 16 / 9;
+  transition: all var(--transition-medium);
+}
+
+.visual-card:hover {
+  border-color: var(--primary);
+  box-shadow: 0 20px 60px rgba(0, 170, 255, 0.3);
+}
+
+.card-glow {
+  position: absolute;
+  inset: -100px;
+  background: radial-gradient(circle, var(--primary), transparent 70%);
+  opacity: 0.15;
+  animation: glowRotate 10s linear infinite;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes glowRotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Video Container */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+}
+
+/* YouTube Video Styles */
+.youtube-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 18px;
+}
+
+.about-video {
+  width: 100%;
+  height: 100%;
+  display: block;
+  background: var(--bg-darker);
+}
+
+/* Remove video controls styles (no longer needed) */
+.video-poster,
+.video-controls,
+.control-btn,
+.play-overlay {
+  display: none !important;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .about-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .about-visual {
+    order: -1;
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .visual-card {
+    aspect-ratio: 16 / 9;
+    border-radius: 12px;
+  }
+  
+  .youtube-video {
+    border-radius: 10px;
+  }
+}
   </style>
 </head>
 
@@ -1507,115 +1601,54 @@
   </section>
 
   <!-- About Section -->
-  <section class="sandhvani-about full-bleed" id="about">
-    <div class="about-container">
-      <div class="about-content">
-        <div class="section-label">What is Sandhvani?</div>
-        <h2 class="section-title">The Ultimate Media Showcase</h2>
-        <p class="section-description">
-          Sandhvani '26 is MUONS' flagship media competition and celebration day, bringing together 
-          creative minds from across the Island to compete in Announcing, Dubbing, Sports commentary, Technical and more.
-        </p>
+<section class="sandhvani-about full-bleed" id="about">
+  <div class="about-container">
+    <div class="about-content">
+      <div class="section-label">What is Sandhvani?</div>
+      <h2 class="section-title">The Ultimate Media Showcase</h2>
+      <p class="section-description">
+        Sandhvani '26 is MUONS' flagship media competition and celebration day, bringing together 
+        creative minds from across the Island to compete in Announcing, Dubbing, Sports commentary, 
+        Technical and more.
+      </p>
 
-        <div class="about-features">
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
-                <line x1="7" y1="2" x2="7" y2="22"></line>
-                <line x1="17" y1="2" x2="17" y2="22"></line>
-                <line x1="2" y1="12" x2="22" y2="12"></line>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h3>Multiple Categories</h3>
-              <p>Announcing, Dubbing, Sports commentary, Technical and more</p>
-            </div>
+      <div class="about-features">
+        <div class="feature-item">
+          <div class="feature-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+              <line x1="7" y1="2" x2="7" y2="22"></line>
+              <line x1="17" y1="2" x2="17" y2="22"></line>
+              <line x1="2" y1="12" x2="22" y2="12"></line>
+            </svg>
           </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-                <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h3></h3>
-              <p></p>
-            </div>
-          </div>
-
-          <div class="feature-item">
-            <div class="feature-icon">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <circle cx="12" cy="8" r="7"></circle>
-                <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
-              </svg>
-            </div>
-            <div class="feature-content">
-              <h3></h3>
-              <p></p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="about-visual">
-        <div class="visual-card" id="videoCard">
-          <div class="card-glow"></div>
-          
-          <div class="video-container">
-            <video 
-              id="aboutVideo"
-              class="about-video" 
-              muted
-              loop
-              playsinline
-              preload="metadata"
-            >
-              <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4">
-              Your browser does not support the video tag.
-            </video>
-            
-            <div class="video-poster" id="videoPoster">
-              <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&q=80" alt="Media competition">
-              <div class="play-overlay">
-                <svg width="80" height="80" viewBox="0 0 24 24" fill="white" opacity="0.9">
-                  <circle cx="12" cy="12" r="10" fill="rgba(0,170,255,0.8)"/>
-                  <polygon points="10 8 16 12 10 16 10 8" fill="white"></polygon>
-                </svg>
-              </div>
-            </div>
-          </div>
-          
-          <div class="video-controls" id="videoControls">
-            <button class="control-btn play-btn" id="playPauseBtn" aria-label="Play/Pause">
-              <svg class="play-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <polygon points="5 3 19 12 5 21 5 3"></polygon>
-              </svg>
-              <svg class="pause-icon" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
-                <rect x="6" y="4" width="4" height="16"></rect>
-                <rect x="14" y="4" width="4" height="16"></rect>
-              </svg>
-            </button>
-            
-            <button class="control-btn mute-btn" id="muteBtn" aria-label="Mute/Unmute">
-              <svg class="unmute-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-              </svg>
-              <svg class="mute-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
-                <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-                <line x1="23" y1="9" x2="17" y2="15"></line>
-                <line x1="17" y1="9" x2="23" y2="15"></line>
-              </svg>
-            </button>
+          <div class="feature-content">
+            <h3>Multiple Categories</h3>
+            <p>Announcing, Dubbing, Sports commentary, Technical and more</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+
+    <div class="about-visual">
+      <div class="visual-card youtube-card">
+        <div class="card-glow"></div>
+        
+        <!-- YouTube Embed with autoplay, loop, and hidden controls -->
+        <div class="video-container">
+          <iframe 
+            class="about-video youtube-video"
+            src="https://www.youtube.com/embed/aaq3oIQMdjA?autoplay=1&mute=1&loop=1&playlist=aaq3oIQMdjA&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1"
+            title="Sandhvani '26 Video"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- Categories Section -->
 <section class="sandhvani-categories full-bleed" id="categories">
