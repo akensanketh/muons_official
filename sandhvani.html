@@ -1521,6 +1521,300 @@
     border-radius: 10px;
   }
 }
+
+/* Container & Background */
+  .categories-container {
+    background-color: #0a0b0d; /* Dark theme background */
+    padding: 60px 20px;
+    color: #ffffff;
+    font-family: 'Inter', sans-serif; /* Fallback font */
+    display: flex;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .section-header {
+    max-width: 800px;
+  }
+
+  /* Small Top Label */
+  .section-label {
+    color: #00a3ff; /* Cyan blue from image */
+    text-transform: uppercase;
+    font-size: 14px;
+    letter-spacing: 4px;
+    font-weight: 700;
+    margin-bottom: 20px;
+  }
+
+  /* Large Main Title */
+  .section-title {
+    font-size: clamp(32px, 5vw, 64px); /* Responsive sizing */
+    text-transform: uppercase;
+    margin: 0 0 24px 0;
+    letter-spacing: 2px;
+    /* Use a wide font like 'Orbitron' or 'Michroma' for this effect */
+    font-family: 'Arial Black', sans-serif; 
+    font-weight: 900;
+  }
+
+  /* Description Text */
+  .section-description {
+    color: #a0a0a0;
+    font-size: 18px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: 'Courier New', Courier, monospace; /* Matches the monospaced look in image */
+  }
+
+  /* === WHATSAPP GROUPS SECTION === */
+.sandhvani-whatsapp {
+  position: relative;
+  padding: clamp(80px, 12vh, 140px) clamp(20px, 5vw, 40px);
+  background: linear-gradient(180deg, var(--bg-carbon), var(--bg-dark));
+  overflow: hidden;
+}
+
+.whatsapp-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  opacity: 0.2;
+}
+
+.whatsapp-container {
+  position: relative;
+  z-index: 10;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.whatsapp-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* WhatsApp Card */
+.whatsapp-card {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  backdrop-filter: blur(20px);
+  text-decoration: none;
+  color: inherit;
+  transition: all var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.whatsapp-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, #25D366, #128C7E);
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+}
+
+.whatsapp-card:hover {
+  border-color: #25D366;
+  transform: translateX(5px);
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.2);
+}
+
+.whatsapp-card:hover::before {
+  opacity: 1;
+}
+
+/* WhatsApp Icon */
+.whatsapp-icon {
+  flex-shrink: 0;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, rgba(37, 211, 102, 0.2), rgba(18, 140, 126, 0.2));
+  border-radius: 12px;
+  color: #25D366;
+  transition: all var(--transition-medium);
+}
+
+.whatsapp-icon.main-group {
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+}
+
+.whatsapp-card:hover .whatsapp-icon {
+  transform: scale(1.1);
+  background: linear-gradient(135deg, #25D366, #128C7E);
+  color: white;
+}
+
+/* WhatsApp Content */
+.whatsapp-content {
+  flex: 1;
+}
+
+.whatsapp-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  margin-bottom: 0.25rem;
+  color: var(--text-main);
+}
+
+.whatsapp-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.whatsapp-members {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  color: var(--text-dim);
+}
+
+.whatsapp-members svg {
+  color: var(--primary);
+}
+
+/* WhatsApp Arrow */
+.whatsapp-arrow {
+  flex-shrink: 0;
+  color: var(--text-dim);
+  transition: all var(--transition-medium);
+}
+
+.whatsapp-card:hover .whatsapp-arrow {
+  color: #25D366;
+  transform: translateX(5px);
+}
+
+/* Help Text */
+.whatsapp-help {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: rgba(37, 211, 102, 0.1);
+  border: 1px solid rgba(37, 211, 102, 0.2);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+}
+
+.whatsapp-help svg {
+  flex-shrink: 0;
+  color: #25D366;
+  margin-top: 2px;
+}
+
+.whatsapp-help p {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .whatsapp-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .whatsapp-card {
+    padding: 1.25rem;
+  }
+  
+  .whatsapp-icon {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .whatsapp-icon svg {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* === CENTER ALL HEADINGS === */
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  margin-bottom: 1rem;
+  letter-spacing: 0.05em;
+  text-align: center;
+}
+
+.section-description {
+  font-size: 1rem;
+  color: var(--text-muted);
+  max-width: 700px;
+  line-height: 1.8;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* Center About Section Headings */
+.about-content .section-label,
+.about-content .section-title,
+.about-content .section-description {
+  text-align: center;
+}
+
+/* Center Hero Title */
+.hero-title {
+  text-align: center;
+}
+
+.hero-subtitle {
+  text-align: center;
+}
+
+/* Center Footer Logo */
+.footer-logo {
+  text-align: center;
+}
+
+.footer-tagline {
+  text-align: center;
+}
+
+/* Center all h2, h3 headings globally (optional - use with caution) */
+h1, h2, h3 {
+  text-align: center;
+}
   </style>
 </head>
 
@@ -1574,7 +1868,7 @@
 
       <div class="hero-cta">
         <a href="#register" class="btn btn-primary">Register Now</a>
-        <a href="#about" class="btn btn-secondary">Learn More</a>
+        <a href="#whatsapp" class="btn btn-secondary">Join Whatsapp Group</a>
       </div>
 
       
@@ -1639,13 +1933,14 @@
   <canvas id="categories-bg" class="categories-canvas" aria-hidden="true"></canvas>
   
   <div class="categories-container">
-    <div class="section-header">
-      <div class="section-label">Competition Categories</div>
-      <h2 class="section-title">Choose Your Battleground</h2>
-      <p class="section-description">
-        Select your category and showcase your skills. Each category has specific requirements and judging criteria.
-      </p>
-    </div>
+  <div class="section-header">
+    <div class="section-label">Competition Categories</div>
+    <h2 class="section-title">Choose Your Battleground</h2>
+    <p class="section-description">
+      Select your category and showcase your skills. Each category has specific requirements and judging criteria.
+    </p>
+  </div>
+</div>
 
     <div class="categories-grid">
       <!-- 1. Announcing -->
@@ -1964,6 +2259,317 @@
       </div>
     </div>
   </section>
+
+
+  <!-- WhatsApp Groups Section -->
+<section class="sandhvani-whatsapp full-bleed" id="whatsapp">
+  <canvas id="whatsapp-bg" class="whatsapp-canvas" aria-hidden="true"></canvas>
+  
+  <div class="whatsapp-container">
+    <div class="section-header">
+      <div class="section-label">Stay Connected</div>
+      <h2 class="section-title">Join Our WhatsApp Groups</h2>
+      <p class="section-description">
+        Please join the relevant category groups using the links given below. Stay updated with announcements and connect with fellow participants.
+      </p>
+    </div>
+
+    <div class="whatsapp-grid">
+      <!-- English Announcing -->
+      <a href="https://chat.whatsapp.com/KZtgp0841Nf6uiHc1vHJZO" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">English Announcing</h3>
+          <p class="whatsapp-description">For English Announcing category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Sinhala Announcing -->
+      <a href="https://chat.whatsapp.com/K2s2ZKHdQQvGiVQ3Z9EJaz" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Sinhala Announcing</h3>
+          <p class="whatsapp-description">For Sinhala Announcing category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- English Editing -->
+      <a href="https://chat.whatsapp.com/DoIoZ1eklf2DHSFq4zFBQn" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">English Editing</h3>
+          <p class="whatsapp-description">For English Editing category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Sinhala Editing -->
+      <a href="https://chat.whatsapp.com/L70mn9BI0jF2e5pnlRjW1b" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+            <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Sinhala Editing</h3>
+          <p class="whatsapp-description">For Sinhala Editing category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- English Program Presenting -->
+      <a href="https://chat.whatsapp.com/HlYAzLKxTjyKJEskGk7gtX" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+            <polyline points="17 2 12 7 7 2"></polyline>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">English Program Presenting</h3>
+          <p class="whatsapp-description">For English Program Presenting participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Sinhala Program Presenting -->
+      <a href="https://chat.whatsapp.com/HDNdsR6X81I5oRa5iSs9AS" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+            <polyline points="17 2 12 7 7 2"></polyline>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Sinhala Program Presenting</h3>
+          <p class="whatsapp-description">For Sinhala Program Presenting participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Sinhala Dubbing -->
+      <a href="https://chat.whatsapp.com/I7PAAxZWvVHE3sC8sxvJ5c" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Sinhala Dubbing</h3>
+          <p class="whatsapp-description">For Sinhala Dubbing category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- English Dubbing -->
+      <a href="https://chat.whatsapp.com/FZvAwVXymt6LiwPA3hwIHR" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">English Dubbing</h3>
+          <p class="whatsapp-description">For English Dubbing category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Technical -->
+      <a href="https://chat.whatsapp.com/EkHy5NO8w9m8H9LxqEcnZh" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Technical Paper</h3>
+          <p class="whatsapp-description">For Technical category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Photography -->
+      <a href="https://chat.whatsapp.com/GrpJQmBhd4050uDClkMAyp" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"></path>
+            <circle cx="12" cy="13" r="4"></circle>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Photography</h3>
+          <p class="whatsapp-description">For Photography category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Graphic Design -->
+      <a href="https://chat.whatsapp.com/Lt062itNqNgBpdgyKQDmXt" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+            <circle cx="8.5" cy="8.5" r="1.5"></circle>
+            <polyline points="21 15 16 10 5 21"></polyline>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Graphic Designing</h3>
+          <p class="whatsapp-description">For Graphic Design category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Cartoon Drawing -->
+      <a href="https://chat.whatsapp.com/Hd7QlxEapIJE572t1VxTw7" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+            <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+            <path d="M2 2l7.586 7.586"></path>
+            <circle cx="11" cy="11" r="2"></circle>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Cartoon Drawing</h3>
+          <p class="whatsapp-description">For Cartoon Drawing category participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- English Sports Commentary -->
+      <a href="https://chat.whatsapp.com/B9F2hG1R7LX8nH19EBuBHw" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">English Sports Commentary</h3>
+          <p class="whatsapp-description">For English Sports Commentary participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+
+      <!-- Sinhala Sports Commentary -->
+      <a href="https://chat.whatsapp.com/K7jIoKaJwT5AfjNVcbZNjt" target="_blank" rel="noopener noreferrer" class="whatsapp-card">
+        <div class="whatsapp-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polygon points="10 8 16 12 10 16 10 8"></polygon>
+          </svg>
+        </div>
+        <div class="whatsapp-content">
+          <h3 class="whatsapp-title">Sinhala Sports Commentary</h3>
+          <p class="whatsapp-description">For Sinhala Sports Commentary participants</p>
+        </div>
+        <div class="whatsapp-arrow">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+            <polyline points="12 5 19 12 12 19"></polyline>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <!-- Help Text -->
+    <div class="whatsapp-help">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="10"></circle>
+        <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+        <line x1="12" y1="17" x2="12.01" y2="17"></line>
+      </svg>
+      <p>Click on any group to join via WhatsApp. Make sure you have WhatsApp installed on your device. Join only the groups relevant to your chosen categories.</p>
+    </div>
+  </div>
+</section>
 
   <!-- Footer -->
   <footer class="sandhvani-footer full-bleed">
@@ -2435,6 +3041,80 @@
       
       console.log('🎬 Sandhvani \'26 Website Loaded Successfully');
     });
+
+    // WhatsApp Background Animation
+function initWhatsAppBackground() {
+  const canvas = document.getElementById('whatsapp-bg');
+  if (!canvas) return;
+  
+  const ctx = canvas.getContext('2d');
+  let w, h, bubbles = [];
+  
+  class Bubble {
+    constructor() {
+      this.x = Math.random() * w;
+      this.y = h + Math.random() * 100;
+      this.radius = Math.random() * 3 + 1;
+      this.speed = Math.random() * 1 + 0.5;
+      this.opacity = Math.random() * 0.5 + 0.2;
+    }
+    
+    update() {
+      this.y -= this.speed;
+      if (this.y < -10) {
+        this.y = h + 10;
+        this.x = Math.random() * w;
+      }
+    }
+    
+    draw() {
+      ctx.fillStyle = `rgba(37, 211, 102, ${this.opacity})`;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+  
+  function resize() {
+    w = canvas.width = canvas.offsetWidth;
+    h = canvas.height = canvas.offsetHeight;
+  }
+  
+  function init() {
+    resize();
+    bubbles = [];
+    for (let i = 0; i < 30; i++) {
+      bubbles.push(new Bubble());
+    }
+  }
+  
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    bubbles.forEach(bubble => {
+      bubble.update();
+      bubble.draw();
+    });
+    requestAnimationFrame(animate);
+  }
+  
+  window.addEventListener('resize', debounce(resize, 100));
+  init();
+  animate();
+}
+
+// Add to DOMContentLoaded
+document.addEventListener('DOMContentLoaded', function () {
+  updateCopyrightYear();
+  initNavigation();
+  initHeroParticles();
+  initCategoriesBackground();
+  initRegisterBackground();
+  initWhatsAppBackground(); // Add this line
+  initBackToTop();
+  initSmoothScroll();
+  
+  console.log('🎬 Sandhvani \'26 Website Loaded Successfully');
+});
   </script>
 
 </body>
