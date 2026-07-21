@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MUONS Members Portal</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/portal.css" />
+</head>
+<body>
+
+  <div id="preloader" class="preloader">
+    <div class="loader-text">MUONS</div>
+  </div>
+
+  <!-- LOGIN -->
+  <div id="loginPage" class="auth-page" style="display:flex;">
+    <div class="auth-container">
+      <div class="auth-header">
+        <h1>MUONS</h1>
+        <p>Members Portal</p>
+      </div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="your@email.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="••••••••" required />
+        </div>
+
+        <button class="btn-login" type="submit">Sign In</button>
+
+        <p id="errorMsg" class="auth-error-inline"></p>
+      </form>
+
+      <div class="auth-hint">
+        <p>Need an account? Create users in Firebase Authentication.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PORTAL -->
+  <div id="portalPage" class="portal-page" style="display:none;">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <h2>MUONS</h2>
+        <p id="sidebarRole" class="sidebar-role">member</p>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="#dashboard" data-page="dashboard" class="nav-item active"><span>📊</span> Dashboard</a>
+        <a href="#announcements" data-page="announcements" class="nav-item"><span>📢</span> Announcements</a>
+        <a href="#events" data-page="events" class="nav-item"><span>📅</span> Events & Coverage</a>
+        <a href="#submissions" data-page="submissions" class="nav-item"><span>📤</span> Submissions</a>
+        <a href="#library" data-page="library" class="nav-item"><span>🖼️</span> Media Library</a>
+        <a href="#equipment" data-page="equipment" class="nav-item"><span>🎥</span> Equipment</a>
+        <a href="#training" data-page="training" class="nav-item"><span>🎓</span> Training</a>
+        <a href="#attendance" data-page="attendance" class="nav-item"><span>✅</span> Attendance</a>
+        <a href="#profile" data-page="profile" class="nav-item"><span>👤</span> Profile</a>
+      </nav>
+
+      <button id="logoutBtn" class="logout-btn" type="button">Logout</button>
+    </aside>
+
+    <main class="main-content">
+      <div class="top-bar">
+        <h1 id="pageTitle">Dashboard</h1>
+        <div class="user-info">
+          <span id="userName">User</span>
+        </div>
+      </div>
+
+      <!-- DASHBOARD -->
+      <section id="dashboardPage" class="page-content active" style="display:block;">
+        <div class="welcome">
+          <h2>Welcome, <span id="welcomeName">User</span>!</h2>
+          <p>Manage events, submissions, equipment and more.</p>
+        </div>
+
+        <div class="stats">
+          <div class="stat-card"><h3>Members</h3><p id="statMembers" class="stat-number">0</p></div>
+          <div class="stat-card"><h3>Upcoming Events</h3><p id="statEvents" class="stat-number">0</p></div>
+          <div class="stat-card"><h3>Pending Submissions</h3><p id="statPendingSubs" class="stat-number">0</p></div>
+          <div class="stat-card"><h3>Equipment Items</h3><p id="statEquipment" class="stat-number">0</p></div>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Latest Announcements</h3>
+              <button class="small-btn" type="button" data-goto="announcements">Open</button>
+            </div>
+            <div id="dashAnnouncements" class="panel-body"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h3>My Recent Submissions</h3>
+              <button class="small-btn" type="button" data-goto="submissions">Open</button>
+            </div>
+            <div id="dashMySubs" class="panel-body"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ANNOUNCEMENTS -->
+      <section id="announcementsPage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Announcements</h2>
+            <p>Official notices and deadlines.</p>
+          </div>
+          <button id="btnNewAnnouncement" class="primary-btn" type="button">+ New</button>
+        </div>
+
+        <form id="announcementForm" class="form-card" style="display:none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Title</label>
+              <input id="aTitle" type="text" placeholder="Meeting / Deadline / Notice" required>
+            </div>
+            <div class="form-group">
+              <label>Pinned</label>
+              <select id="aPinned">
+                <option value="false">No</option>
+                <option value="true">Yes</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Message</label>
+              <textarea id="aBody" rows="4" placeholder="Write announcement..." required></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-btn" type="submit">Publish</button>
+            <button id="aCancel" class="ghost-btn" type="button">Cancel</button>
+          </div>
+          <p class="form-note">Only staff roles can publish (rules enforced).</p>
+        </form>
+
+        <div id="announcementsList" class="list"></div>
+      </section>
+
+      <!-- EVENTS -->
+      <section id="eventsPage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Events & Coverage</h2>
+            <p>Create events, assign teams, and manage coverage.</p>
+          </div>
+          <button id="btnNewEvent" class="primary-btn" type="button">+ New Event</button>
+        </div>
+
+        <form id="eventForm" class="form-card" style="display:none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Event Name</label>
+              <input id="eTitle" type="text" required placeholder="Sports Meet 2026">
+            </div>
+            <div class="form-group">
+              <label>Date</label>
+              <input id="eDate" type="date" required>
+            </div>
+            <div class="form-group">
+              <label>Time</label>
+              <input id="eTime" type="time">
+            </div>
+            <div class="form-group">
+              <label>Location</label>
+              <input id="eLocation" type="text" placeholder="School Ground">
+            </div>
+            <div class="form-group full">
+              <label>Brief / Notes</label>
+              <textarea id="eBrief" rows="3" placeholder="Coverage plan / rules / shot list..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="primary-btn" type="submit">Save Event</button>
+            <button id="eCancel" class="ghost-btn" type="button">Cancel</button>
+          </div>
+          <p class="form-note">Only staff roles can create events (rules enforced).</p>
+        </form>
+
+        <div id="eventsList" class="list"></div>
+      </section>
+
+      <!-- SUBMISSIONS -->
+      <section id="submissionsPage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Submissions</h2>
+            <p>Submit your work and track review status.</p>
+          </div>
+          <button id="btnNewSubmission" class="primary-btn" type="button">+ New Submission</button>
+        </div>
+
+        <form id="submissionForm" class="form-card" style="display:none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Event</label>
+              <select id="sEvent" required></select>
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <select id="sType" required>
+                <option value="photo">Photo</option>
+                <option value="video">Video</option>
+                <option value="poster">Poster</option>
+                <option value="reel">Reel</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Title</label>
+              <input id="sTitle" type="text" required placeholder="Sports Meet Highlights">
+            </div>
+            <div class="form-group full">
+              <label>Link (Drive/OneDrive/YouTube/etc.)</label>
+              <input id="sLink" type="url" required placeholder="https://...">
+            </div>
+            <div class="form-group full">
+              <label>Description</label>
+              <textarea id="sDesc" rows="3" placeholder="What is included? any notes..."></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button class="primary-btn" type="submit">Submit</button>
+            <button id="sCancel" class="ghost-btn" type="button">Cancel</button>
+          </div>
+        </form>
+
+        <div class="tabs">
+          <button class="tab active" data-subtab="mine" type="button">My Submissions</button>
+          <button class="tab" data-subtab="pending" type="button">Pending Review</button>
+          <button class="tab" data-subtab="all" type="button">All (Staff)</button>
+        </div>
+
+        <div id="submissionsList" class="list"></div>
+      </section>
+
+      <!-- MEDIA LIBRARY -->
+      <section id="libraryPage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Media Library</h2>
+            <p>Approved items ready for publishing/archiving.</p>
+          </div>
+          <button id="btnNewMedia" class="primary-btn" type="button">+ Add Approved Item</button>
+        </div>
+
+        <form id="mediaForm" class="form-card" style="display:none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Event</label>
+              <select id="mEvent" required></select>
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <select id="mType" required>
+                <option value="photo">Photo</option>
+                <option value="video">Video</option>
+                <option value="poster">Poster</option>
+                <option value="album">Album</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Title</label>
+              <input id="mTitle" type="text" required placeholder="Prize Giving Album">
+            </div>
+            <div class="form-group full">
+              <label>Approved Link</label>
+              <input id="mLink" type="url" required placeholder="https://...">
+            </div>
+            <div class="form-group full">
+              <label>Tags (comma separated)</label>
+              <input id="mTags" type="text" placeholder="sports, 2026, highlights">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-btn" type="submit">Add to Library</button>
+            <button id="mCancel" class="ghost-btn" type="button">Cancel</button>
+          </div>
+          <p class="form-note">Only staff can add items (rules enforced).</p>
+        </form>
+
+        <div id="libraryGrid" class="grid"></div>
+      </section>
+
+      <!-- EQUIPMENT -->
+      <section id="equipmentPage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Equipment</h2>
+            <p>Inventory + booking requests.</p>
+          </div>
+          <button id="btnNewEquipment" class="primary-btn" type="button">+ Add Item</button>
+        </div>
+
+        <form id="equipmentForm" class="form-card" style="display:none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Name</label>
+              <input id="eqName" type="text" required placeholder="Canon 700D">
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="eqCat">
+                <option value="camera">Camera</option>
+                <option value="lens">Lens</option>
+                <option value="tripod">Tripod</option>
+                <option value="mic">Mic</option>
+                <option value="light">Light</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Serial/Tag</label>
+              <input id="eqSerial" type="text" placeholder="MUONS-001">
+            </div>
+            <div class="form-group">
+              <label>Condition</label>
+              <select id="eqCondition">
+                <option value="good">Good</option>
+                <option value="fair">Fair</option>
+                <option value="repair">Needs Repair</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Notes</label>
+              <textarea id="eqNotes" rows="2" placeholder="Battery missing / bag available..."></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-btn" type="submit">Save Item</button>
+            <button id="eqCancel" class="ghost-btn" type="button">Cancel</button>
+          </div>
+          <p class="form-note">Only staff can add items (rules enforced).</p>
+        </form>
+
+        <div class="two-col">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Inventory</h3>
+            </div>
+            <div id="equipmentList" class="panel-body"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Booking Requests</h3>
+            </div>
+
+            <form id="bookingForm" class="form-card" style="margin:0;">
+              <div class="form-grid">
+                <div class="form-group full">
+                  <label>Select Item</label>
+                  <select id="bItem" required></select>
+                </div>
+                <div class="form-group">
+                  <label>From</label>
+                  <input id="bFrom" type="datetime-local" required>
+                </div>
+                <div class="form-group">
+                  <label>To</label>
+                  <input id="bTo" type="datetime-local" required>
+                </div>
+                <div class="form-group full">
+                  <label>Purpose</label>
+                  <input id="bPurpose" type="text" required placeholder="Event coverage / practice">
+                </div>
+              </div>
+              <div class="form-actions">
+                <button class="primary-btn" type="submit">Request Booking</button>
+              </div>
+            </form>
+
+            <div id="bookingsList" class="panel-body" style="margin-top:1rem;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRAINING -->
+      <section id="trainingPage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Training</h2>
+            <p>Resources for juniors and team learning.</p>
+          </div>
+          <button id="btnNewTraining" class="primary-btn" type="button">+ Add Resource</button>
+        </div>
+
+        <form id="trainingForm" class="form-card" style="display:none;">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Title</label>
+              <input id="tTitle" type="text" required placeholder="Photography Basics">
+            </div>
+            <div class="form-group">
+              <label>Category</label>
+              <select id="tCat">
+                <option value="photo">Photography</option>
+                <option value="video">Videography</option>
+                <option value="edit">Editing</option>
+                <option value="design">Design</option>
+                <option value="audio">Audio</option>
+              </select>
+            </div>
+            <div class="form-group full">
+              <label>Link</label>
+              <input id="tLink" type="url" required placeholder="https://...">
+            </div>
+            <div class="form-group full">
+              <label>Description</label>
+              <textarea id="tDesc" rows="3" placeholder="Short explanation..."></textarea>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-btn" type="submit">Add Resource</button>
+            <button id="tCancel" class="ghost-btn" type="button">Cancel</button>
+          </div>
+          <p class="form-note">Only staff can add resources (rules enforced).</p>
+        </form>
+
+        <div id="trainingList" class="list"></div>
+      </section>
+
+      <!-- ATTENDANCE -->
+      <section id="attendancePage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Attendance</h2>
+            <p>Track participation and attendance per event.</p>
+          </div>
+        </div>
+
+        <div class="form-card">
+          <div class="form-grid">
+            <div class="form-group full">
+              <label>Select Event</label>
+              <select id="attEvent"></select>
+            </div>
+          </div>
+          <div class="form-actions">
+            <button id="btnLoadAttendance" class="primary-btn" type="button">Load Attendance</button>
+          </div>
+          <p class="form-note">Only staff can edit attendance. Members can view their own records.</p>
+        </div>
+
+        <div class="two-col">
+          <div class="panel">
+            <div class="panel-head">
+              <h3>Mark Attendance (Staff)</h3>
+            </div>
+            <div id="attendanceEditor" class="panel-body"></div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-head">
+              <h3>My Attendance</h3>
+            </div>
+            <div id="myAttendanceList" class="panel-body"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROFILE -->
+      <section id="profilePage" class="page-content" style="display:none;">
+        <div class="page-head">
+          <div>
+            <h2>Profile</h2>
+            <p>Update your basic info.</p>
+          </div>
+        </div>
+
+        <form id="profileForm" class="form-card">
+          <div class="form-grid">
+            <div class="form-group">
+              <label>Name</label>
+              <input id="pName" type="text" required>
+            </div>
+            <div class="form-group">
+              <label>Role</label>
+              <input id="pRole" type="text" disabled>
+            </div>
+            <div class="form-group full">
+              <label>Avatar URL</label>
+              <input id="pAvatar" type="url" placeholder="https://...">
+            </div>
+            <div class="form-group full">
+              <label>Bio</label>
+              <textarea id="pBio" rows="3"></textarea>
+            </div>
+            <div class="form-group">
+              <label>Phone</label>
+              <input id="pPhone" type="text" placeholder="07xxxxxxxx">
+            </div>
+          </div>
+          <div class="form-actions">
+            <button class="primary-btn" type="submit">Save Profile</button>
+          </div>
+          <p class="form-note">Role cannot be changed by users.</p>
+        </form>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- Firebase compat SDKs (keep this order) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyD6-ND4S-O4X--Eu_25_AOnyyPrLLtf4NM",
+      authDomain: "muons-463c3.firebaseapp.com",
+      projectId: "muons-463c3",
+      storageBucket: "muons-463c3.firebasestorage.app",
+      messagingSenderId: "475857658884",
+      appId: "1:475857658884:web:fe76445e34ac82bae44151"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+    const SV = firebase.firestore.FieldValue.serverTimestamp;
+  </script>
+
+  <script src="js/portal.js"></script>
+</body>
+</html>
